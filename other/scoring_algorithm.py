@@ -69,7 +69,7 @@ def procentual_proximity(
 
         # weight not 0 or 1
         else:
-            raise ValueError("Invalid weight of %f provided" % (weight))
+            raise ValueError(f"Invalid weight of {weight:f} provided")
 
         score_lists.append(score)
 
@@ -77,7 +77,7 @@ def procentual_proximity(
     final_scores: list[float] = [0 for i in range(len(score_lists[0]))]
 
     # generate final scores
-    for i, slist in enumerate(score_lists):
+    for slist in score_lists:
         for j, ele in enumerate(slist):
             final_scores[j] = final_scores[j] + ele
 

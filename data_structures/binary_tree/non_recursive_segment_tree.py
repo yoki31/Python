@@ -37,7 +37,8 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 """
 from __future__ import annotations
 
-from typing import Any, Callable, Generic, TypeVar
+from collections.abc import Callable
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -102,7 +103,7 @@ class SegmentTree(Generic[T]):
         >>> st.query(2, 3)
         7
         """
-        l, r = l + self.N, r + self.N  # noqa: E741
+        l, r = l + self.N, r + self.N
 
         res: T | None = None
         while l <= r:  # noqa: E741

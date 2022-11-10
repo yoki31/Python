@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Iterator
+from collections.abc import Iterator
+from typing import Any
 
 
 class Node:
@@ -93,25 +94,25 @@ def test_circular_linked_list() -> None:
 
     try:
         circular_linked_list.delete_front()
-        assert False  # This should not happen
+        raise AssertionError()  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_tail()
-        assert False  # This should not happen
+        raise AssertionError()  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_nth(-1)
-        assert False
+        raise AssertionError()
     except IndexError:
         assert True
 
     try:
         circular_linked_list.delete_nth(0)
-        assert False
+        raise AssertionError()
     except IndexError:
         assert True
 

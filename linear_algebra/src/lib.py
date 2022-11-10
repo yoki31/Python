@@ -22,7 +22,8 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Collection, overload
+from collections.abc import Collection
+from typing import overload
 
 
 class Vector:
@@ -39,7 +40,6 @@ class Vector:
         __sub__(other: Vector): vector subtraction
         __mul__(other: float): scalar multiplication
         __mul__(other: Vector): dot product
-        set(components: Collection[float]): changes the vector components
         copy(): copies this vector and returns it
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
@@ -118,17 +118,6 @@ class Vector:
         else:  # error case
             raise Exception("invalid operand!")
 
-    def set(self, components: Collection[float]) -> None:
-        """
-        input: new components
-        changes the components of the vector.
-        replaces the components with newer one.
-        """
-        if len(components) > 0:
-            self.__components = list(components)
-        else:
-            raise Exception("please give any vector")
-
     def copy(self) -> Vector:
         """
         copies this vector and returns it.
@@ -167,12 +156,12 @@ class Vector:
         9.539392014169456
         >>> Vector([]).euclidean_length()
         Traceback (most recent call last):
-        ...
+            ...
         Exception: Vector is empty
         """
         if len(self.__components) == 0:
             raise Exception("Vector is empty")
-        squares = [c ** 2 for c in self.__components]
+        squares = [c**2 for c in self.__components]
         return math.sqrt(sum(squares))
 
     def angle(self, other: Vector, deg: bool = False) -> float:
@@ -185,7 +174,7 @@ class Vector:
         85.40775111366095
         >>> Vector([3, 4, -1]).angle(Vector([2, -1]))
         Traceback (most recent call last):
-        ...
+            ...
         Exception: invalid operand!
         """
         num = self * other

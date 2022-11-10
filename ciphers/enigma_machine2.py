@@ -8,7 +8,7 @@ the famous Enigma machine from WWII.
 Module includes:
 - enigma function
 - showcase of function usage
-- 9 randnomly generated rotors
+- 9 randomly generated rotors
 - reflector (aka static rotor)
 - original alphabet
 
@@ -86,23 +86,22 @@ def _validator(
     """
     # Checks if there are 3 unique rotors
 
-    unique_rotsel = len(set(rotsel))
-    if unique_rotsel < 3:
+    if (unique_rotsel := len(set(rotsel))) < 3:
         raise Exception(f"Please use 3 unique rotors (not {unique_rotsel})")
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
         raise ValueError(
-            f"First rotor position is not within range of 1..26 (" f"{rotorpos1}"
+            "First rotor position is not within range of 1..26 (" f"{rotorpos1}"
         )
     if not 0 < rotorpos2 <= len(abc):
         raise ValueError(
-            f"Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
+            "Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
         )
     if not 0 < rotorpos3 <= len(abc):
         raise ValueError(
-            f"Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
+            "Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
         )
 
     # Validates string and returns dict

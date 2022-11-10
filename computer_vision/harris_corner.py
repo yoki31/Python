@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 """
 
 
-class Harris_Corner:
+class HarrisCorner:
     def __init__(self, k: float, window_size: int):
 
         """
@@ -22,8 +22,7 @@ class Harris_Corner:
             raise ValueError("invalid k value")
 
     def __str__(self) -> str:
-
-        return f"Harris Corner  detection with k : {self.k}"
+        return str(self.k)
 
     def detect(self, img_path: str) -> tuple[cv2.Mat, list[list[int]]]:
 
@@ -39,8 +38,8 @@ class Harris_Corner:
         color_img = img.copy()
         color_img = cv2.cvtColor(color_img, cv2.COLOR_GRAY2RGB)
         dy, dx = np.gradient(img)
-        ixx = dx ** 2
-        iyy = dy ** 2
+        ixx = dx**2
+        iyy = dy**2
         ixy = dx * dy
         k = 0.04
         offset = self.window_size // 2
@@ -56,9 +55,9 @@ class Harris_Corner:
                     y - offset : y + offset + 1, x - offset : x + offset + 1
                 ].sum()
 
-                det = (wxx * wyy) - (wxy ** 2)
+                det = (wxx * wyy) - (wxy**2)
                 trace = wxx + wyy
-                r = det - k * (trace ** 2)
+                r = det - k * (trace**2)
                 # Can change the value
                 if r > 0.5:
                     corner_list.append([x, y, r])
@@ -70,6 +69,6 @@ class Harris_Corner:
 
 if __name__ == "__main__":
 
-    edge_detect = Harris_Corner(0.04, 3)
+    edge_detect = HarrisCorner(0.04, 3)
     color_img, _ = edge_detect.detect("path_to_image")
     cv2.imwrite("detect.png", color_img)
